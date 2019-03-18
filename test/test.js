@@ -7,7 +7,7 @@ test('defaults', async t => {
     t.log(await cfntest.createStack(`${__dirname}/defaults.yml`, stackName, {}));
     // what could we test here?
   } finally {
-    //t.log(await cfntest.deleteStack(stackName));
+    t.log(await cfntest.deleteStack(stackName));
     t.pass();
   }
 });
