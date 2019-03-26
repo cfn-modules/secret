@@ -5,4 +5,4 @@ Resources:
   Secret:
     Type: 'AWS::CloudFormation::Stack'
     Properties:
-      TemplateURL: './node_modules/@cfn-modules/sqs-queue/module.yml'
+      TemplateURL: './node_modules/@cfn-modules/secret/module.yml'
