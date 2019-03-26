@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'cfn-modules: AWS RDS Aurora Serverless cluster'
+Description: 'cfn-modules: AWS Secrets Manager Secret'
 Parameters:
   KmsKeyModule:
     Description: 'The key to use when encrypting the secret'
