@@ -1,12 +1,17 @@
-TODO: Build and badges
+[![Build Status](https://travis-ci.org/cfn-modules/secret.svg?branch=master)](https://travis-ci.org/cfn-modules/secret)
+[![NPM version](https://img.shields.io/npm/v/@cfn-modules/secret.svg)](https://www.npmjs.com/package/@cfn-modules/secret)
 
-# cfn-modules: AWS Secret
+# cfn-modules: AWS Secrets Manager secret
 
-AWS Secret with optional encryption using defined key.
+AWS Secrets Manager secret with encryption.
 
 ## Install
 
-TODO: NPM publish
+> Install [Node.js and npm](https://nodejs.org/) first!
+
+```
+npm i @cfn-modules/secret
+```
 
 ## Usage
 
@@ -15,21 +20,14 @@ TODO: NPM publish
 ```
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'cfn-modules secret example'
+Description: 'cfn-modules example'
 Resources:
-  Key:
-    Type: 'AWS::CloudFormation::Stack'
-    Properties:
-      Parameters:
-        AlertingModule: !GetAtt 'Alerting.Outputs.StackName'
-      TemplateURL: './node_modules/@cfn-modules/kms-key/module.yml'
   Secret:
     Type: 'AWS::CloudFormation::Stack'
     Properties:
       Parameters:
-        KmsKeyModule: !GetAtt 'Key.Outputs.StackName'
-        Name: "Project/Env/Secret"
-      TemplateURL: './node_modules/cfn-modules-secret/module.yml'
+        KmsKeyModule: !GetAtt 'Key.Outputs.StackName' # optional
+      TemplateURL: './node_modules/@cfn-modules/secret/module.yml'
 ```
 
 ## Parameters
@@ -46,16 +44,9 @@ Resources:
   </thead>
   <tbody>
     <tr>
-      <td>Name</td>
-      <td>The name that identifies the secret</a></td>
-      <td></td>
-      <td>yes</td>
-      <td></td>
-    </tr>
-    <tr>
       <td>KmsKeyModule</td>
       <td>Stack name of <a href="https://www.npmjs.com/package/@cfn-modules/kms-key">kms-key module</a></td>
-      <td>The key used to encrypt/decrypt the secret</td>
+      <td></td>
       <td>no</td>
       <td></td>
     </tr>

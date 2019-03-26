@@ -11,28 +11,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'cfn-modules: AWS Secrets Manager Secret'
+Description: 'cfn-modules: AWS Secrets Manager secret'
+# cfn-modules:implements(ExposeArn)
 Parameters:
   KmsKeyModule:
-    Description: 'The key to use when encrypting the secret'
-    Type: String
-    Default: ''
-  Name:
-    Description: 'A name for the secret'
+    Description: 'Optional but recommended stack name of kms-key module.'
     Type: String
     Default: ''
 Conditions:
-  HasKmsKey: !Not [!Equals [!Ref KmsKeyModule, '']]
-  HasName: !Not [!Equals [!Ref Name, '']]
+  HasKmsKeyModule: !Not [!Equals [!Ref KmsKeyModule, '']]
 Resources:
   Secret:
-    Type: "AWS::SecretsManager::Secret"
+    Type: 'AWS::SecretsManager::Secret'
     Properties:
-      KmsKeyId: !If [HasKmsKey, {'Fn::ImportValue': !Sub '${KmsKeyModule}-Arn'}, !Ref 'AWS::NoValue']
+      KmsKeyId: !If [HasKmsKeyModule, {'Fn::ImportValue': !Sub '${KmsKeyModule}-Arn'}, !Ref 'AWS::NoValue']
       GenerateSecretString:
         PasswordLength: 30
         ExcludeCharacters: '"@/\'
-      Name: !If [HasName, !Ref 'Name', !Ref 'AWS::NoValue']
 Outputs:
   ModuleId:
     Value: 'secret'
@@ -40,7 +35,7 @@ Outputs:
     Value: '1.0.0'
   StackName:
     Value: !Ref 'AWS::StackName'
-  SecretArn:
+  Arn:
     Value: !Ref 'Secret'
     Export:
-      Name: !Sub '${AWS::StackName}-SecretArn'
+      Name: !Sub '${AWS::StackName}-Arn'
