@@ -11,4 +11,4 @@ Resources:
     Properties:
       Parameters:
         KmsKeyModule: !GetAtt 'Key.Outputs.StackName'
-      TemplateURL: './node_modules/@cfn-modules/sqs-queue/module.yml'
+      TemplateURL: './node_modules/@cfn-modules/secret/module.yml'
