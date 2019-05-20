@@ -30,6 +30,14 @@ Resources:
       TemplateURL: './node_modules/@cfn-modules/secret/module.yml'
 ```
 
+## Examples
+
+none
+
+## Related modules
+
+* [kms-key](https://github.com/cfn-modules/kms-key)
+
 ## Parameters
 
 <table>
