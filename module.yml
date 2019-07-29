@@ -18,16 +18,32 @@ Parameters:
     Description: 'Optional but recommended stack name of kms-key module.'
     Type: String
     Default: ''
+  Name:
+    Description: 'Optional name of the secret.'
+    Type: String
+    Default: ''
+  Description:
+    Description: 'Optional description of the secret.'
+    Type: String
+    Default: ''
+  CharactersToExclude:
+    Description: 'Optional characters not to be used when generating the initial value.'
+    Type: String
+    Default: '"@/\'
 Conditions:
   HasKmsKeyModule: !Not [!Equals [!Ref KmsKeyModule, '']]
+  HasName: !Not [!Equals [!Ref Name, '']]
+  HasDescription: !Not [!Equals [!Ref Description, '']]
 Resources:
   Secret:
     Type: 'AWS::SecretsManager::Secret'
     Properties:
       KmsKeyId: !If [HasKmsKeyModule, {'Fn::ImportValue': !Sub '${KmsKeyModule}-Arn'}, !Ref 'AWS::NoValue']
+      Name: !If [HasName, !Ref 'Name', !Ref 'AWS::NoValue']
+      Description: !If [HasDescription, !Ref 'Description', !Ref 'AWS::NoValue']
       GenerateSecretString:
         PasswordLength: 30
-        ExcludeCharacters: '"@/\'
+        ExcludeCharacters: !Ref 'CharactersToExclude'
 Outputs:
   ModuleId:
     Value: 'secret'
