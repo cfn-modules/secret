@@ -29,7 +29,7 @@ Resources:
         KmsKeyModule: !GetAtt 'Key.Outputs.StackName' # optional
         Name: 'my-secret-name' #optional
         Description: 'A secret description' #optional
-        CharactersToExclude: '!@#$%^&*()' # optional
+        CharactersToExclude: '"@/\' # optional
       TemplateURL: './node_modules/@cfn-modules/secret/module.yml'
 ```
 
@@ -64,7 +64,7 @@ none
     <tr>
       <td>Name</td>
       <td>The name to give the secret. This is the name shown in the AWS Console</a></td>
-      <td></td>
+      <td>auto generated value</td>
       <td>no</td>
       <td></td>
     </tr>
