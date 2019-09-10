@@ -30,6 +30,7 @@ Resources:
         Name: 'my-secret-name' #optional
         Description: 'A secret description' #optional
         CharactersToExclude: '"@/\' # optional
+        PasswordLength: 30 # optional
       TemplateURL: './node_modules/@cfn-modules/secret/module.yml'
 ```
 
@@ -79,6 +80,13 @@ none
       <td>CharactersToExclude</td>
       <td>When generating the initial value these characters will not be used.</a></td>
       <td>'"@/\'</td>
+      <td>no</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>PasswordLength</td>
+      <td>The length of the generated password.</td>
+      <td>30</td>
       <td>no</td>
       <td></td>
     </tr>
