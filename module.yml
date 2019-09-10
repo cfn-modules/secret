@@ -30,6 +30,10 @@ Parameters:
     Description: 'Optional characters not to be used when generating the initial value.'
     Type: String
     Default: '"@/\'
+  PasswordLength:
+    Description: 'Optional length of the generated password'
+    Type: Number
+    Default: 30
 Conditions:
   HasKmsKeyModule: !Not [!Equals [!Ref KmsKeyModule, '']]
   HasName: !Not [!Equals [!Ref Name, '']]
@@ -42,13 +46,13 @@ Resources:
       Name: !If [HasName, !Ref 'Name', !Ref 'AWS::NoValue']
       Description: !If [HasDescription, !Ref 'Description', !Ref 'AWS::NoValue']
       GenerateSecretString:
-        PasswordLength: 30
+        PasswordLength: !Ref PasswordLength
         ExcludeCharacters: !Ref 'CharactersToExclude'
 Outputs:
   ModuleId:
     Value: 'secret'
   ModuleVersion:
-    Value: '1.1.0'
+    Value: '1.2.0'
   StackName:
     Value: !Ref 'AWS::StackName'
   Arn:

@@ -51,3 +51,13 @@ test.serial('with-excluded-chars', async t => {
     t.pass(); 
   }
 });
+test.serial('with-password-length', async t => {
+  const stackName = cfntest.stackName();
+  try {
+    t.log(await cfntest.createStack(`${__dirname}/with-password-length.yml`, stackName, {}));
+    // what could we test here?
+  } finally {
+    t.log(await cfntest.deleteStack(stackName));
+    t.pass(); 
+  }
+});
