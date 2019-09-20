@@ -30,6 +30,36 @@ Parameters:
     Description: 'Optional characters not to be used when generating the initial value.'
     Type: String
     Default: '"@/\'
+  ExcludeLowercase:
+    Description: 'Optionally specifies that the generated password should not include lowercase letters.'
+    Type: String
+    AllowedValues: ['true', 'false']
+    Default: 'false'
+  ExcludeNumbers:
+    Description: 'Optionally specifies that the generated password should not include digits.'
+    Type: String
+    AllowedValues: ['true', 'false']
+    Default: 'false'
+  ExcludePunctuation:
+    Description: 'Optionally specifies that the generated password should not include punctuation characters.'
+    Type: String
+    AllowedValues: ['true', 'false']
+    Default: 'false'
+  ExcludeUppercase:
+    Description: 'Optionally specifies that the generated password should not include uppercase letters.'
+    Type: String
+    AllowedValues: ['true', 'false']
+    Default: 'false'
+  IncludeSpace:
+    Description: 'Optionally specifies that the generated password should not include the space character.'
+    Type: String
+    AllowedValues: ['true', 'false']
+    Default: 'false'
+  RequireEachIncludedType:
+    Description: 'Optionally specifies whether the generated password must include at least one of every allowed character type.'
+    Type: String
+    AllowedValues: ['true', 'false']
+    Default: 'true'
   PasswordLength:
     Description: 'Optional length of the generated password'
     Type: Number
@@ -48,6 +78,12 @@ Resources:
       GenerateSecretString:
         PasswordLength: !Ref PasswordLength
         ExcludeCharacters: !Ref 'CharactersToExclude'
+        ExcludeLowercase: !Ref 'ExcludeLowercase'
+        ExcludeNumbers: !Ref 'ExcludeNumbers'
+        ExcludePunctuation: !Ref 'ExcludePunctuation'
+        ExcludeUppercase: !Ref 'ExcludeUppercase'
+        IncludeSpace: !Ref 'IncludeSpace'
+        RequireEachIncludedType: !Ref 'RequireEachIncludedType'
 Outputs:
   ModuleId:
     Value: 'secret'

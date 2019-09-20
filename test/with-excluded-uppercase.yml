@@ -1,0 +1,10 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'cfn-modules test'
+Resources:
+  Secret:
+    Type: 'AWS::CloudFormation::Stack'
+    Properties:
+      Parameters:
+        ExcludeUppercase: 'true'
+      TemplateURL: './node_modules/@cfn-modules/secret/module.yml'
