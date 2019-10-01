@@ -17,7 +17,10 @@ Parameters:
   Arn:
     Description: 'Arn of the secret.'
     Type: String
-Resources: {}
+Resources:
+  Dummy:
+    Type: 'AWS::S3::Bucket'
+    Properties: {}
 Outputs:
   ModuleId:
     Value: 'wrapper/secret'
