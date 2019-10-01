@@ -1,6 +1,6 @@
 {
   "name": "@cfn-modules/secret",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "AWS Secrets Manager secret with encryption",
   "author": "Pete McLean <ptmclean@gmail.com>",
   "license": "Apache-2.0",

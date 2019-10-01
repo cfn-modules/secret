@@ -92,3 +92,20 @@ none
     </tr>
   </tbody>
 </table>
+
+## Wrapper
+
+If you want to use an existing Secret, use the wrapper with the `Arn` of the existing secret:
+
+```
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'cfn-modules example'
+Resources:
+  Secret:
+    Type: 'AWS::CloudFormation::Stack'
+    Properties:
+      Parameters:
+        Arn: 'arn:aws:secretsmanager:eu-west-1:111111111111:secret:name/of/secret' # required
+      TemplateURL: './node_modules/@cfn-modules/secret/wrapper.yml'
+```
