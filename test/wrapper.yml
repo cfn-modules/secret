@@ -1,0 +1,14 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'cfn-modules test'
+Resources:
+  Secret:
+    Type: 'AWS::CloudFormation::Stack'
+    Properties:
+      TemplateURL: './node_modules/@cfn-modules/secret/module.yml'
+  Wrapper:
+    Type: 'AWS::CloudFormation::Stack'
+    Properties:
+      Parameters:
+        Arn: !GetAtt 'Secret.Outputs.Arn'
+      TemplateURL: './node_modules/@cfn-modules/secret/wrapper.yml'
