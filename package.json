@@ -4,7 +4,10 @@
   "description": "AWS Secrets Manager secret with encryption",
   "author": "Pete McLean <ptmclean@gmail.com>",
   "license": "Apache-2.0",
-  "keywords": ["cfn-modules", "cfn-modules:ExposeArn"],
+  "keywords": [
+    "cfn-modules",
+    "cfn-modules:ExposeArn"
+  ],
   "homepage": "https://github.com/cfn-modules",
   "bugs": {
     "url": "https://github.com/cfn-modules/secret/issues"
